@@ -1,0 +1,16 @@
+{
+"name": "Armário Rosa",
+"short_name": "Armário",
+"start_url": "index.html",
+"display": "standalone",
+"background_color": "#FFF5F7",
+"theme_color": "#FFB7C5",
+"icons": [
+{
+"src": "https://www.google.com/search?q=https://img.icons8.com/emoji/512/leopard-emoji.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "any maskable"
+}
+]
+}
