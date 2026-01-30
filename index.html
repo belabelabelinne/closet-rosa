@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Armário Rosa 🐆</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@700&family=Montserrat:wght@400;600&display=swap');
+        body { font-family: 'Montserrat', sans-serif; background-color: #FFF5F7; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .leopard-pattern {
+            background-image: radial-gradient(#FFB7C5 2px, transparent 2px);
+            background-size: 25px 25px;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+    <header class="bg-white p-8 pt-12 rounded-b-[40px] shadow-sm text-center">
+        <h1 class="font-serif text-3xl text-[#FF85A1]">Armário Rosa</h1>
+        <p class="text-[10px] tracking-[0.3em] uppercase text-[#D1A7B0] mt-1">Digital Curator</p>
+    </header>
+
+    <main class="flex-1 leopard-pattern p-6 overflow-y-auto">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center text-4xl shadow-sm">👗</div>
+            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center text-4xl shadow-sm">👚</div>
+            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center text-4xl shadow-sm">👠</div>
+            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center border-dashed border-2 border-pink-200">
+                <span class="text-[#FFB7C5] text-2xl font-bold">+</span>
+            </div>
+        </div>
+    </main>
+
+    <nav class="p-6">
+        <div class="bg-white h-20 rounded-[35px] shadow-xl flex justify-around items-center px-4">
+            <button class="text-2xl">🐆</button>
+            <button class="text-2xl grayscale">💖</button>
+            <button class="text-2xl grayscale">✨</button>
+        </div>
+    </nav>
+</body>
+</html>
+
