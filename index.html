@@ -2,46 +2,214 @@
 <html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Armário Rosa 🐆</title>
-    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- Configurações de App (PWA) -->
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#FFB7C5">
+    
+    <!-- Link para o teu Manifesto (Ícone) -->
+    <link rel="manifest" href="manifest.json">
+    
+    <title>Pink Cloud</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@700&family=Montserrat:wght@400;600&display=swap');
-        body { font-family: 'Montserrat', sans-serif; background-color: #FFF5F7; }
-        .font-serif { font-family: 'Playfair Display', serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Montserrat:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #FFF5F7; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Estampa de Oncinha Rosa Suave */
         .leopard-pattern {
-            background-image: radial-gradient(#FFB7C5 2px, transparent 2px);
-            background-size: 25px 25px;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,20 C15,20 10,25 10,30 C10,35 15,40 20,40 C25,40 30,35 30,30 C30,25 25,20 20,20 Z' fill='%23e899ac' fill-opacity='0.15'/%3E%3C/svg%3E");
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Estilo para o Player do Spotify */
+        .spotify-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(255, 183, 197, 0.4);
+            margin-top: 20px;
         }
     </style>
 </head>
-<body class="h-screen flex flex-col">
-    <header class="bg-white p-8 pt-12 rounded-b-[40px] shadow-sm text-center">
-        <h1 class="font-serif text-3xl text-[#FF85A1]">Armário Rosa</h1>
-        <p class="text-[10px] tracking-[0.3em] uppercase text-[#D1A7B0] mt-1">Digital Curator</p>
+<body class="leopard-pattern min-h-screen pb-32 text-[#5D4046]">
+
+    <!-- Cabeçalho Fixo -->
+    <header class="bg-white pt-14 pb-6 px-6 rounded-b-[45px] shadow-sm text-center sticky top-0 z-50">
+        <h1 class="text-3xl font-serif italic text-[#FF85A1]" style="font-family: 'Playfair Display', serif;">Pink Cloud</h1>
+        <p class="text-[10px] tracking-[0.4em] font-bold text-[#A08288] mt-1 uppercase italic">My Aesthetic Closet</p>
     </header>
 
-    <main class="flex-1 leopard-pattern p-6 overflow-y-auto">
-        <div class="grid grid-cols-2 gap-4">
-            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center text-4xl shadow-sm">👗</div>
-            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center text-4xl shadow-sm">👚</div>
-            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center text-4xl shadow-sm">👠</div>
-            <div class="bg-white/90 backdrop-blur-sm aspect-square rounded-[30px] border border-pink-100 flex items-center justify-center border-dashed border-2 border-pink-200">
-                <span class="text-[#FFB7C5] text-2xl font-bold">+</span>
+    <main class="p-6">
+        <!-- Aba: Closet (Principal) -->
+        <section id="closet" class="tab-content active">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold italic border-b-2 border-[#FFB7C5]">O Meu Closet 🐆</h2>
+                <button onclick="openModal()" class="bg-[#FFB7C5] text-white p-3 rounded-full shadow-lg active:scale-90 transition-all">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
             </div>
-        </div>
+            
+            <!-- Grid de Fotos -->
+            <div id="grid-closet" class="grid grid-cols-2 gap-4 mb-8">
+                <!-- As tuas fotos guardadas aparecem aqui -->
+            </div>
+
+            <!-- Player da Tua Playlist -->
+            <div class="mt-8">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-[#FF85A1] mb-3 ml-2">Mood do Dia 🎧</h3>
+                <div class="spotify-container">
+                    <iframe 
+                        style="border-radius:12px" 
+                        src="https://open.spotify.com/embed/playlist/2e6IqeE7C9tC4nrFBQskii?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="152" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aba: Wishlist -->
+        <section id="wishlist" class="tab-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold italic border-b-2 border-[#FFB7C5]">Lista de Desejos 🎀</h2>
+            </div>
+            <div class="bg-white p-8 rounded-[40px] text-center border-2 border-dashed border-pink-100">
+                <div class="text-4xl mb-4">✨</div>
+                <p class="text-sm text-pink-300 italic">Em breve poderás guardar aqui os teus links da Shein e Zara!</p>
+            </div>
+        </section>
     </main>
 
-    <nav class="p-6">
-        <div class="bg-white h-20 rounded-[35px] shadow-xl flex justify-around items-center px-4">
-            <button class="text-2xl">🐆</button>
-            <button class="text-2xl grayscale">💖</button>
-            <button class="text-2xl grayscale">✨</button>
+    <!-- Modal para Adicionar Foto -->
+    <div id="modal" class="fixed inset-0 bg-black/60 hidden z-[100] flex items-center justify-center p-6 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm rounded-[45px] p-8 shadow-2xl text-center">
+            <h3 class="text-2xl font-serif italic text-[#FF85A1] mb-6">Nova Peça</h3>
+            <label class="block mb-6 cursor-pointer bg-pink-50 py-8 rounded-[35px] border-2 border-dashed border-pink-200 active:bg-pink-100 transition-colors">
+                <span class="text-pink-400 font-bold block text-sm uppercase">Tirar Foto / Galeria</span>
+                <input type="file" id="item-image" accept="image/*" class="hidden" onchange="previewImage(this)">
+            </label>
+            <div id="preview-container" class="hidden mb-6">
+                <img id="img-preview" class="w-32 h-32 mx-auto object-cover rounded-3xl border-2 border-pink-200 shadow-md">
+            </div>
+            <div class="flex gap-3">
+                <button onclick="closeModal()" class="flex-1 py-4 rounded-3xl bg-gray-50 font-bold text-gray-400 uppercase text-[10px]">Cancelar</button>
+                <button onclick="saveItem()" class="flex-1 py-4 rounded-3xl bg-[#FFB7C5] text-white font-bold uppercase text-[10px] shadow-lg">Guardar</button>
+            </div>
         </div>
+    </div>
+
+    <!-- Navegação Inferior -->
+    <nav class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-sm h-20 glass-nav rounded-[40px] border border-white/50 shadow-2xl flex justify-around items-center px-4 z-50">
+        <button onclick="switchTab('closet')" id="btn-closet" class="p-4 rounded-2xl text-[#FF85A1] bg-pink-50 transition-all">
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L4 9v12h16V9l-8-6z"/></svg>
+        </button>
+        <button onclick="switchTab('wishlist')" id="btn-wishlist" class="p-4 rounded-2xl text-pink-200 transition-all">
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </button>
     </nav>
+
+    <script>
+        // Base de dados local para guardar as fotos no telemóvel
+        let db = JSON.parse(localStorage.getItem('pink_cloud_db')) || [];
+
+        function switchTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            const isCloset = id === 'closet';
+            const btnCloset = document.getElementById('btn-closet');
+            const btnWish = document.getElementById('btn-wishlist');
+
+            btnCloset.classList.toggle('text-[#FF85A1]', isCloset);
+            btnCloset.classList.toggle('bg-pink-50', isCloset);
+            btnCloset.classList.toggle('text-pink-200', !isCloset);
+
+            btnWish.classList.toggle('text-[#FF85A1]', !isCloset);
+            btnWish.classList.toggle('bg-pink-50', !isCloset);
+            btnWish.classList.toggle('text-pink-200', isCloset);
+        }
+
+        function openModal() { document.getElementById('modal').classList.remove('hidden'); }
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('preview-container').classList.add('hidden');
+            document.getElementById('item-image').value = '';
+        }
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('img-preview').src = e.target.result;
+                    document.getElementById('preview-container').classList.remove('hidden');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function saveItem() {
+            const imgData = document.getElementById('img-preview').src;
+            if(!imgData || imgData.includes('hidden')) return;
+            
+            db.push({ img: imgData, id: Date.now() });
+            localStorage.setItem('pink_cloud_db', JSON.stringify(db));
+            closeModal();
+            render();
+        }
+
+        function deleteItem(id) {
+            db = db.filter(i => i.id !== id);
+            localStorage.setItem('pink_cloud_db', JSON.stringify(db));
+            render();
+        }
+
+        function render() {
+            const grid = document.getElementById('grid-closet');
+            if (db.length === 0) {
+                grid.innerHTML = `<div class="col-span-2 py-10 text-center text-pink-200 italic text-sm">O teu closet ainda não tem fotos...</div>`;
+                return;
+            }
+            grid.innerHTML = db.map(item => `
+                <div class="bg-white p-2 rounded-[30px] shadow-sm relative animate-in fade-in zoom-in duration-300">
+                    <img src="${item.img}" class="w-full aspect-square object-cover rounded-[22px]">
+                    <button onclick="deleteItem(${item.id})" class="absolute -top-1 -right-1 bg-white p-2 rounded-full text-red-300 shadow-md">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/></svg>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        window.onload = render;
+    </script>
 </body>
 </html>
+
 
